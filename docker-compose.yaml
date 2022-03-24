@@ -1,22 +1,19 @@
 version: "3"
 
 services:
-  gcpdiscord:
+  discoplug:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: "gcpdiscord-bot"
+    container_name: "discoplug-bot"
     volumes:
       - type: bind
         source: "."
-        target: "/deploy/gcpdiscord"
+        target: "/deploy/discoplug"
         read_only: true
     environment:
-      GCEDISCORD_DISCORD_TOKEN:       ${GCEDISCORD_DISCORD_TOKEN}
-      GCEDISCORD_DISCORD_MAIN_CH_ID:  ${GCEDISCORD_DISCORD_MAIN_CH_ID}
-      GCEDISCORD_PERMITTED_ROLE_IDS:  ${GCEDISCORD_PERMITTED_ROLE_IDS}
-      GCEDISCORD_GCE_INSTANCE_ZONE:   ${GCEDISCORD_GCE_INSTANCE_ZONE}
-      
+      DISCOPLUG_TOKEN:  ${DISCOPLUG_TOKEN}
+
     entrypoint: python main.py
     restart: "always"
     tty: true
